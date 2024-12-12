@@ -1,12 +1,19 @@
 import "./App.css";
-import CompOne from "./components/CompOne.tsx";
+
+import NewTodo from "./components/NewTodo.tsx";
 import Todos from "./components/Todos.tsx";
+import Todo from "./models/todo.ts";
 
 function App() {
+  const todos = [new Todo("learn"), new Todo("js")];
+  console.log(todos);
+
+  const AddTodoHandler = (text: string) => {};
+
   return (
     <div>
-      <Todos items={["hari"]} />
-      <CompOne name="hari" />
+      <NewTodo onAddTodo={AddTodoHandler} />
+      <Todos items={todos} />
     </div>
   );
 }
