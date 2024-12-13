@@ -1,13 +1,20 @@
 // import React from "react";
 import Todo from "../models/todo.ts";
-import TodoItems from "./TodoItems.tsx";
+import TodoItem from "./TodoItem.tsx";
+import classes from "./Todos.module.css";
 
-const Todos: React.FC<{ items?: Todo[] }> = (props) => {
+const Todos: React.FC<{ items?: Todo[]; removeItems: (id: string) => void }> = (
+  props
+) => {
   return (
-    <ul>
+    <ul className={classes.todos}>
       {props.items?.map((item) => (
-        // <li key={item.id}>{item.text}</li>
-        <TodoItems key={item.id} text={item.text} />
+        <TodoItem
+          key={item.id}
+          text={item.text}
+          //   removeItems={props.removeItems.bind(null, item.id)}
+          removeItems={() => props.removeItems(item.id)}
+        />
       ))}
     </ul>
   );
